@@ -1,0 +1,117 @@
+
+<app-menu></app-menu>
+<div class="container-fluid" style="margin-top: 5%;">
+
+
+
+        <div *ngIf="loggato.privilegi === 1">
+        <a href="#" data-toggle="modal" class="btn btn-info" data-target="#myModal2">Aggiungi veicolo...</a>
+        </div>
+    <div class="row" style="width: 90%; padding: 10px;">
+
+        
+
+            <div class="col-7 border-right-0 border-bottom-0 border-left-0 border border-info "
+                 style="margin-top: 10px; padding: 5px;" *ngFor="let mezzo of veicles">
+
+                <div class="media">
+                    <img src=""
+                         class="align-self-start mr-3" width="300" height="250">
+                    <ul class="list-group list-group-flush" style=" width:100%; padding: 5px">
+                        <li class="list-group-item">Casa costruttrice:
+                            <strong>{{mezzo.casa}}</strong>
+                        </li>
+                        <li class="list-group-item">Modello: <strong>{{mezzo.modello}}</strong></li>
+                        
+                        <li class="list-group-item">Targa: <strong>{{mezzo.targa}}</strong></li>
+
+                            
+                            <td class="list-group-item border-0" *ngIf="loggato.privilegi === 1">
+                                <button type="button" class="btn btn-secondary" (click)="editVeicle(mezzo)">
+                                    Modifica veicolo...
+                                </button>
+                            </td>
+                            <td class="list-group-item border-0" *ngIf="loggato.privilegi === 0">
+                                <button type="button" class="btn btn-primary">
+                                        Prenota veicolo...
+                                </button>
+                            </td>
+                            
+                            
+
+                        <!-- popUp per aggiungere un'auto-->
+                        <div class="modal" tabindex="-1" role="dialog" id="myModal2">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Aggiungi Auto</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <!-- form dentro il popUp per aggiungere un'auto -->
+                                    <div class="modal-body">
+                                        <form class="shadow-sm p-3 mb-5 bg-white rounded-lg" #mezzoForm="ngForm">
+                                            <div class="form-group">
+                                                <label for="casa">Casa costruttrice:</label>
+                                                <input type="text" class="form-control" id="casa"
+                                                       name="casa"
+                                                       placeholder="Fiat..." aria-describedby="nameHelp" ngModel>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="modello">Modello:</label>
+                                                <input type="text" class="form-control" id="modello"
+                                                       placeholder="500..." name="modello"
+                                                       aria-describedby="secondNameHelp" ngModel>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="targa">Targa:</label>
+                                                <input type="text" class="form-control" id="targa" name="targa"
+                                                       aria-describedby="secondNameHelp"
+                                                       placeholder="" ngModel>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="data">Data di immatricolazione:</label>
+                                                <input type="date" id="data"
+                                                       name="data"
+                                                       aria-describedby="dateHelp" ngModel>
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="custom-select" id="tipologia" name="tipologia" ngModel>
+                                                    <option selected>Tipologia veicolo...</option>
+                                                    <option value="berlina">Berlina</option>
+                                                    <option value="citycar">City Car</option>
+                                                    <option value="cabriolet">Cabriolet</option>
+                                                    <option value="monovolume">Monovolume</option>
+                                                    <option value="sportiva">Sportiva</option>
+                                                    <option value="stationwagon">Station Wagon</option>
+                                                    <option value="suv">SUV</option>
+                                                    <option value="furgone">Furgone</option>
+                                                </select>
+                                            </div>
+                                            <button type="button" (click)="addVeicle(mezzoForm.value)" class="btn btn-success">Aggiungi veicolo</button>
+                                            <div *ngIf="creata === true"><p class="text-success">{{messCreata}}</p></div>
+                                            <br>
+                                        </form>
+
+                                    </div>
+                                    <div class="modal-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ul>
+                </div>
+
+                <div *ngIf="loggato.privilegi === 1" class="col-6" style="margin-top: 10px; padding: 5px;">
+                    <button class="btn btn-danger" (click)="deleteVeicle(mezzo)">X</button>
+                    Elimina Veicolo
+                </div>
+
+            </div>
+
+            
+
+    </div>
+
+</div>

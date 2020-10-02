@@ -1,0 +1,21 @@
+<app-menu></app-menu>
+<div class="container-fluid d-flex align-items-center justify-content-center" style="margin-top: 10%;">
+
+
+    <div class="card  text-center shadow-lg p-3 mb-5 bg-white rounded" style="width: 30%;">
+        <img src="./profilo.jpg"  width="100" height="300" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">Ciao   {{user.nome}}</h5>
+            <p class="card-text">Questi sono i tuoi dati</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Nome: <strong>{{user.nome}}</strong></li>
+            <li class="list-group-item">Cognome: <strong>{{user.cognome}}</strong></li>
+            <li class="list-group-item">Data di nascita: <strong>{{user.data_nascita}}</strong></li>
+        </ul>
+        <a   class="btn btn-info" (click)=editUser(user)>Modifica utente...</a>
+
+
+    </div>
+
+</div>

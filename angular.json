@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "rentalCar-test1"
+    }
+  },
+  "defaultProject": "rentalCar-test1",
+  "cli": {
+    "analytics": false
+  }
 }
