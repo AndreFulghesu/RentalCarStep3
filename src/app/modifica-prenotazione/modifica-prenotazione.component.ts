@@ -20,6 +20,9 @@ export class ModificaPrenotazioneComponent implements OnInit {
   errorMessage = '';
   error = false;
   loggato:User;
+  two_days_milliseconds = 172800000;
+
+  
   
   
 
@@ -27,14 +30,19 @@ export class ModificaPrenotazioneComponent implements OnInit {
     this.loggato = JSON.parse(sessionStorage.user);
     this.id_prenot = this.route.snapshot.params['id'];
     this.getPrenotazione(this.id_prenot);
-    this.period = ( Number(this.odierna) - Number(this.da_modificare.inizio_prenotazione))
+    
   }
 
   getPrenotazione(id)
   {
     this.service.getPrenotazioneById(id).subscribe(data =>{
       this.da_modificare = data;
-      console.log(this.odierna.getTime())
+      console.log("Tempo data odierna:"+this.odierna.getTime())
+      //console.log("Tempo data prenotazione: "+this.da_modificare.inizio_prenotazione)
+      //console.log("Tempo data prenotazione: "+  new Date(this.da_modificare.inizio_prenotazione).getTime())
+      this.period = (new Date(this.da_modificare.inizio_prenotazione).getTime()) - (this.odierna.getTime());
+      console.log("periodo:   "+ this.period )
+      
       
       
     })
@@ -52,6 +60,6 @@ export class ModificaPrenotazioneComponent implements OnInit {
     }
   }
 
-  
 
 }
+

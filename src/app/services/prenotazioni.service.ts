@@ -14,6 +14,10 @@ export class PrenotazioniService {
 
   constructor(private http:HttpClient) { }
 
+  getAllPrenotazioni ()
+  {
+    return this.http.get<Prenotazione[]>(this.url);
+  }
 
   getPrenotazionebyIdUtente (id)
   {
@@ -22,7 +26,12 @@ export class PrenotazioniService {
 
   getPrenotazioneById (id)
   {
-    return this.http.get<Prenotazione>(this.url + id);
+    return this.http.get<Prenotazione>( `http://localhost:3000/prenotazioni/${id}`);
+  }
+
+  nuovaPrenotazione (prenotazione)
+  {
+    return this.http.post(" http://localhost:3000/prenotazioni",prenotazione);
   }
 
 
@@ -31,12 +40,16 @@ export class PrenotazioniService {
     return this.http.delete("http://localhost:3000/prenotazioni/"+id);
   }
 
+  
+
   updatePrenotazione(prenotazione)
   {
     
     return this.http.put<Prenotazione>("http://localhost:3000/prenotazioni/"+prenotazione.id,prenotazione);
   
   }
+
+  
 
   
 

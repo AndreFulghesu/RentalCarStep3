@@ -28,13 +28,12 @@
       "privilegi": 0
     },
     {
-      "nome": "Giorgetta",
-      "cognome": "Caria",
-      "email": "giorgetta@gmail.com",
+      "nome": "Auroretta",
+      "cognome": "Carta",
+      "email": "aurora.carta@gmail.com",
       "password": "1234",
-      "data_nascita": "1996-01-01",
-      "id": 4,
-      "privilegi": 0
+      "data_nascita": "1995-02-01",
+      "id": 4
     }
   ],
   "cars": [
@@ -71,21 +70,21 @@
       "data": "2012-02-01",
       "tipologia": "berlina",
       "id": 4
+    },
+    {
+      "casa": "Fiat",
+      "modello": "Punto",
+      "targa": "GG456XV",
+      "data": "2011-10-12",
+      "tipologia": "sportiva",
+      "id": 5
     }
   ],
   "prenotazioni": [
     {
-      "id": 1,
-      "inizio_prenotazione": "2020-11-02",
-      "fine_prenotazione": "2020-11-05",
-      "mezzo_utilizzato": "BH470RT",
-      "status_prenotazione": 0,
-      "utente_richiedente": 3
-    },
-    {
       "id": 2,
-      "inizio_prenotazione": "2020-11-13",
-      "fine_prenotazione": "2020-11-15",
+      "inizio_prenotazione": "2020-11-24",
+      "fine_prenotazione": "2020-11-27",
       "mezzo_utilizzato": "DE668MX",
       "status_prenotazione": 0,
       "utente_richiedente": 3

@@ -19,6 +19,9 @@ export class PrenotazioniUtenteComponent implements OnInit {
   prenotazioni:Prenotazione[] = [];
   utente_selezionato:User;
   mezzo:Mezzo;
+  da_approvare:Prenotazione;
+  eliminata:string = ""
+  
 
   constructor(private route:ActivatedRoute,private prenotService:PrenotazioniService,private userService:UserService,private mezzoService:MezzoServiceService) { }
 
@@ -49,15 +52,34 @@ export class PrenotazioniUtenteComponent implements OnInit {
       this.mezzoService.getVeicleByTarga(targa).subscribe(data =>{
         this.mezzo = data;
       });
-
-
   }
 
   eliminaPrenotazione(id)
   {
     this.prenotService.deletePrenotazione(id).subscribe(() =>{
       this.getAllPrenotazioni(this.id_utente);
+      this.eliminata = "Prenotazione eliminata";
+      this.ngOnInit()
     });
+  }
+
+  approvaPrenotazione(id)
+  {
+
+    this.prenotService.getPrenotazioneById(id).subscribe(data =>{
+      this.da_approvare = data;
+      this.da_approvare.status_prenotazione = 1;
+
+      console.log("status "+this.da_approvare.status_prenotazione)
+
+      this.prenotService.updatePrenotazione(this.da_approvare).subscribe(data=>{
+
+        this.ngOnInit()
+
+      })
+      
+    })
+
   }
 
 

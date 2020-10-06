@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormsModule} from '@angular/forms'
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
@@ -16,6 +16,8 @@ export class CreateUserComponent implements OnInit {
 
   id:number;
   user:User;
+  confirmUserCreated:string = "Utente creato con successo"
+  
 
 
   loggato:User = JSON.parse(sessionStorage.user);
@@ -30,6 +32,7 @@ export class CreateUserComponent implements OnInit {
   {
       this.service.createUser(formInput).subscribe((response) =>{
       })
+      
       
       this.router.navigate(['homepage',this.loggato.id]);
   }

@@ -1,7 +1,12 @@
 <app-menu></app-menu>
 <div class="container-fluid d-flex align-items-center justify-content-center">
 
-    <div class="row row-cols-1 text-center"  style="width: 70%; padding: 10px;">
+    <div class="row row-cols-1 text-center"  style="width: 70%; padding: 10px; margin-top: 3%;">
+
+        <div *ngIf="eliminato.length !== 0">
+            <p class="text-success mx-auto">{{eliminato}}</p>
+        </div>
+
 
         <a  class="btn btn-primary" *ngIf="utente.privilegi === 1" (click)=addUser()> Aggiungi utente...</a>
         <a  class="btn btn-primary" *ngIf="utente.privilegi === 0" (click)=addPrenotazione()> Aggiungi prenotazione...</a>
@@ -58,3 +63,13 @@
 
 </div>
 </div>
+
+<script>
+    function deleteUser(idUtente){
+        var confirmation = confirm("Sei sicuro di voler cancellare l'utente?")
+        if (confirmation){
+            window.location.href='elimina?idUtente='+idUtente;
+        }else{
+        }
+    }
+</script>

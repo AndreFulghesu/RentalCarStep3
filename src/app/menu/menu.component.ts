@@ -34,4 +34,10 @@ export class MenuComponent implements OnInit {
     this.route.navigate(['parcoAuto']);
   }
 
+  mioProfilo()
+  {
+    this.route.navigate(['userProfile',this.loggato.id])
+  }
+
+
 }

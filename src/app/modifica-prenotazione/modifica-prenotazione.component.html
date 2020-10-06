@@ -15,7 +15,7 @@
             <label for="data_fine">Seleziona la data di resa:</label>
             <input type="date" id="data_fine"  name="data_fine" aria-describedby="dateHelp" [(ngModel)]="da_modificare.fine_prenotazione">
         </div>
-        <div *ngIf = "period > 2; else elseBlock">
+        <div *ngIf = "period > two_days_milliseconds; else elseBlock">
         <button type="button" class="btn btn-success" (click) = modificaPrenotazioneAuto()>Prenota Auto</button>
         </div>
         <ng-template #elseBlock>

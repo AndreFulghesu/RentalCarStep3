@@ -16,6 +16,7 @@ export class ParcoAutoComponent implements OnInit {
   veicles:Mezzo[] = []
 
   loggato:User;
+  successDelete:string;
   creata:boolean;
   messCreata = "L'auto è stata creata con successo."
 
@@ -37,7 +38,9 @@ export class ParcoAutoComponent implements OnInit {
   deleteVeicle(mezzo)
   {
     this.service.deleteVeicle(mezzo).subscribe(() =>{
+      this.successDelete = "Veicolo eliminato con successo"
       this.getVeicles();
+      window.scroll(0,0);
     });
   }
 
@@ -52,7 +55,18 @@ export class ParcoAutoComponent implements OnInit {
     });
 
     this.creata = true;
+    
  
+  }
+
+  prenotaVeicolo(targa)
+  {
+    this.router.navigate(['prenotaAuto',targa]);
+  }
+
+  refresh ()
+  {
+    this.ngOnInit()
   }
 
 }

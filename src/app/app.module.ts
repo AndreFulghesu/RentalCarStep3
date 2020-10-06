@@ -16,6 +16,7 @@ import { ParcoAutoComponent } from './parco-auto/parco-auto.component';
 import { ModifyVeicleComponent } from './modify-veicle/modify-veicle.component';
 import { PrenotazioniUtenteComponent } from './prenotazioni-utente/prenotazioni-utente.component';
 import { ModificaPrenotazioneComponent } from './modifica-prenotazione/modifica-prenotazione.component';
+import { PrenotaAutoComponent } from './prenota-auto/prenota-auto.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ModificaPrenotazioneComponent } from './modifica-prenotazione/modifica-
     ParcoAutoComponent,
     ModifyVeicleComponent,
     PrenotazioniUtenteComponent,
-    ModificaPrenotazioneComponent
+    ModificaPrenotazioneComponent,
+    PrenotaAutoComponent
   ],
   imports: [
     BrowserModule,

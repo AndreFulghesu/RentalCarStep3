@@ -8,6 +8,13 @@
         </p>
     </div>
 
+    <div *ngIf="eliminata.length !== 0">
+        <p class="text-danger mx-auto">
+            {{eliminata}}
+        </p>
+    </div>
+
+
     <div class="row row-cols-1 justify-content-center" *ngIf="prenotazioni.length > 0"  style="width: 100%; padding: 10px;">
 
         
@@ -34,7 +41,7 @@
                     <td><strong>{{prenot.fine_prenotazione}}</strong></td>
                    <!--in base allo status prenotazione -->
                         <div *ngIf="prenot.status_prenotazione === 0">
-                        <td><button type="button" class="btn btn-success" >Approva</button></td>
+                        <td><button type="button" class="btn btn-success" (click)="approvaPrenotazione(prenot.id)">Approva</button></td>
                         <td><button type="button" (click)=eliminaPrenotazione(prenot.id) class="btn btn-danger">Elimina</button></td>
                         </div>
                     
