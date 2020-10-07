@@ -17,6 +17,12 @@ import { ModifyVeicleComponent } from './modify-veicle/modify-veicle.component';
 import { PrenotazioniUtenteComponent } from './prenotazioni-utente/prenotazioni-utente.component';
 import { ModificaPrenotazioneComponent } from './modifica-prenotazione/modifica-prenotazione.component';
 import { PrenotaAutoComponent } from './prenota-auto/prenota-auto.component';
+import { GenericTableComponent } from './generic-table/generic-table.component';
+
+import {Ng2OrderModule} from 'ng2-order-pipe';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { GenericButtonComponent } from './generic-button/generic-button.component';
 
 
 @NgModule({
@@ -32,7 +38,9 @@ import { PrenotaAutoComponent } from './prenota-auto/prenota-auto.component';
     ModifyVeicleComponent,
     PrenotazioniUtenteComponent,
     ModificaPrenotazioneComponent,
-    PrenotaAutoComponent
+    PrenotaAutoComponent,
+    GenericTableComponent,
+    GenericButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +48,9 @@ import { PrenotaAutoComponent } from './prenota-auto/prenota-auto.component';
     FormsModule,
     HttpClientModule,
     CommonModule,
+    Ng2OrderModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
  
   ],
   providers: [

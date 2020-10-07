@@ -34,6 +34,22 @@
       "password": "1234",
       "data_nascita": "1995-02-01",
       "id": 4
+    },
+    {
+      "nome": "Chiara",
+      "cognome": "Serra",
+      "email": "serra@gmail.com",
+      "password": "1234",
+      "data_nascita": "1995-02-01",
+      "id": 5
+    },
+    {
+      "nome": "Luca",
+      "cognome": "ralph",
+      "email": "ralph@gmail.com",
+      "password": "1234",
+      "data_nascita": "1999-02-01",
+      "id": 6
     }
   ],
   "cars": [
@@ -82,20 +98,28 @@
   ],
   "prenotazioni": [
     {
-      "id": 2,
-      "inizio_prenotazione": "2020-11-24",
-      "fine_prenotazione": "2020-11-27",
+      "id": 3,
+      "inizio_prenotazione": "2020-11-15",
+      "fine_prenotazione": "2020-11-18",
       "mezzo_utilizzato": "DE668MX",
       "status_prenotazione": 0,
       "utente_richiedente": 3
     },
     {
-      "id": 3,
+      "id": 4,
       "inizio_prenotazione": "2020-11-15",
       "fine_prenotazione": "2020-11-18",
       "mezzo_utilizzato": "BH470RT",
       "status_prenotazione": 0,
-      "utente_richiedente": 2
+      "utente_richiedente": 3
+    },
+    {
+      "id": 5,
+      "inizio_prenotazione": "2020-11-15",
+      "fine_prenotazione": "2020-11-18",
+      "mezzo_utilizzato": "BH470RT",
+      "status_prenotazione": 0,
+      "utente_richiedente": 3
     }
   ]
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit, NgModule, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MyButtonConfig } from '../generic-button/generic-button.component';
+import { MyHeaders, MyTableConfig } from '../generic-table/generic-table.component';
 import { Prenotazione } from '../model/prenotazione';
 import { User } from '../model/user';
 import { PrenotazioniService } from '../services/prenotazioni.service';
@@ -15,14 +17,41 @@ export class HomepageComponent implements OnInit {
 
 
 
+  
+
+
+  myTable: MyTableConfig = new MyTableConfig;
+
+  addUserButton: MyButtonConfig = new MyButtonConfig;
+
+  addPrenotationButton: MyButtonConfig = new MyButtonConfig;
+
+  homepage = "homepage"
+
+  myHeader: MyHeaders [] = [{"label":"ID","key":"id"},{"label":"Utente","key":"nome"},{"label":"Cognome","key":"cognome"}];
  
   
   utente:User;
+  nome:any;
   eliminato:string = ""
-  users:User []= [];
-  prenotazioni:Prenotazione[] = [];
+  users:any []= [];
+  prenotazioni:Prenotazione[] = []  
   odierna = new Date().toLocaleDateString();
-  constructor(private route:ActivatedRoute, private service:UserService, private router:Router, private servicePrenot:PrenotazioniService, private prenotService:PrenotazioniService) { }
+
+
+  selezione:string;
+
+
+
+
+  constructor(private route:ActivatedRoute, private service:UserService, private router:Router, private servicePrenot:PrenotazioniService, private prenotService:PrenotazioniService) {
+    this.myTable.header = this.myHeader;
+    this.addUserButton.text = "Aggiungi Utente"
+    this.addUserButton.customCssClass = "btn btn-primary"
+
+    this.addPrenotationButton.customCssClass = "btn btn-primary"
+    this.addPrenotationButton.text = "Aggiungi prenotazione"
+   }
 
   ngOnInit(): void {
 
@@ -34,8 +63,46 @@ export class HomepageComponent implements OnInit {
       this.router.navigate(['login']);
     }
     this.getAllUsers();
-    this.getPrenotazioniByIdUtente(this.utente.id);
+    this.getPrenotazioniByIdUtente(this.utente.id)
+    
 
+  }
+
+  search()
+  {
+
+    /*
+    if (this.nome == "")
+    {
+      this.ngOnInit();
+    }else{
+      this.users = this.users.filter(res =>{
+        return res.nome.toLocaleLowerCase().match(this.nome.toLocaleLowerCase());
+      })
+    }
+
+    */
+
+   if (this.nome === "")
+   {
+     this.ngOnInit();
+   }else{
+    if (this.selezione === "nome")
+    {
+      this.users = this.users.filter(res =>{
+        return res.nome.toLocaleLowerCase().match(this.nome.toLocaleLowerCase());
+      })
+    }else{
+      if (this.selezione ==="cognome"){
+        this.users = this.users.filter(res =>{
+          return res.cognome.toLocaleLowerCase().match(this.nome.toLocaleLowerCase());
+        })
+      }
+    }
+  }
+
+    
+    
   }
 
   getAllUsers ()
@@ -53,13 +120,6 @@ export class HomepageComponent implements OnInit {
   
   }
 
-  getPrenotazioniByIdUtente(id)
-  {
-    this.servicePrenot.getPrenotazionebyIdUtente(id).subscribe(data =>{
-      this.prenotazioni = data;
-    })
-
-  }
 
   userProfile (id)
   {
@@ -71,58 +131,24 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(['addUser']);
   }
 
-  deleteUser (user)
-  {
-    
-    if(confirm("Vuoi davvero cancellare l'utente "+ user.nome +" ?")){
-    this.service.deleteUser(user).subscribe(() =>{
-
-      let prenotazioniUtente:Prenotazione[] = [];
-      this.prenotService.getPrenotazionebyIdUtente(user.id).subscribe(data =>{
-        prenotazioniUtente = data;
-        for(var v of prenotazioniUtente){
-          this.prenotService.deletePrenotazione(v.id).subscribe(data =>{})
-        }
-      })
-
-      this.prenotService.deletePrenotazione(user.id).subscribe(data =>{})
-      this.eliminato = "Utente eliminato con successo";
-      this.deletePrenotazione(user);
-      this.getAllUsers();
-    });
-    }
-  }
-
-
-  editUser (user)
-  {
-    this.service.currentUser = Object.assign ({},user);
-    this.router.navigate(['editUser',user.id]);
-  }
 
   addPrenotazione()
   {
     this.router.navigate(['parcoAuto']);
   }
 
-
-  prenotazioniUtente(id)
-  {
-      this.router.navigate(['visualizzaPrenotazioni',id]);
-  }
-
-
-  deletePrenotazione(id)
-  {
-    this.servicePrenot.deletePrenotazione(id).subscribe(()=>{
-      this.getPrenotazioniByIdUtente(this.utente.id);
-    })
-  }
-
   modificaPrenotazione(id)
   {
 
     this.router.navigate(['modificaPrenotazione',id]);
+  }
+
+  getPrenotazioniByIdUtente(id)
+  {
+    this.prenotService.getPrenotazionebyIdUtente(id).subscribe(data =>{
+      this.prenotazioni = data;
+    })
+
   }
 
 

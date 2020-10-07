@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MyHeaders, MyTableConfig } from '../generic-table/generic-table.component';
 import { Mezzo } from '../model/mezzo';
 import { Prenotazione } from '../model/prenotazione';
 import { User } from '../model/user';
@@ -21,11 +22,20 @@ export class PrenotazioniUtenteComponent implements OnInit {
   mezzo:Mezzo;
   da_approvare:Prenotazione;
   eliminata:string = ""
+
+
+  prenotazioni_utente = "prenotazioniUtente"
+
+  myTable: MyTableConfig = new MyTableConfig;
+
+  myHeaders: MyHeaders[] = [{"label":"#","key":""},{"label":"Mezzo","key":"mezzo_utilizzato"},{"label":"Data inizio","key":"inizio_prenotazione"},{"label":"Data fine","key":"fine_prenotazione"}];
   
 
   constructor(private route:ActivatedRoute,private prenotService:PrenotazioniService,private userService:UserService,private mezzoService:MezzoServiceService) { }
 
   ngOnInit(): void {
+
+    this.myTable.header = this.myHeaders;
 
     this.id_utente = this.route.snapshot.params['id'];
     this.getAllPrenotazioni(this.id_utente);
@@ -62,26 +72,6 @@ export class PrenotazioniUtenteComponent implements OnInit {
       this.ngOnInit()
     });
   }
-
-  approvaPrenotazione(id)
-  {
-
-    this.prenotService.getPrenotazioneById(id).subscribe(data =>{
-      this.da_approvare = data;
-      this.da_approvare.status_prenotazione = 1;
-
-      console.log("status "+this.da_approvare.status_prenotazione)
-
-      this.prenotService.updatePrenotazione(this.da_approvare).subscribe(data=>{
-
-        this.ngOnInit()
-
-      })
-      
-    })
-
-  }
-
 
 
 }

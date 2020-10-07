@@ -15,9 +15,12 @@
     </div>
 
 
-    <div class="row row-cols-1 justify-content-center" *ngIf="prenotazioni.length > 0"  style="width: 100%; padding: 10px;">
+    <div class="row row-cols-1 justify-content-center" *ngIf="prenotazioni.length > 0"  style="width: auto; padding: 5px;">
 
-        
+        <h5 class="text-info p-3">{{utente_selezionato.nome}} {{utente_selezionato.cognome}}</h5>
+        <app-generic-table [tableConfig]="myTable" [id_utente]="id_utente" [currentPage]="prenotazioni_utente" [data] ="prenotazioni"></app-generic-table>
+
+        <!--
 
         <table class="table table-hover" style="margin-top: 1%;">
             <thead class="thead-dark">
@@ -39,13 +42,15 @@
                     <td><strong>{{prenot.mezzo_utilizzato}} </strong></td>
                     <td><strong>{{prenot.inizio_prenotazione}}</strong></td>
                     <td><strong>{{prenot.fine_prenotazione}}</strong></td>
-                   <!--in base allo status prenotazione -->
+
+                -->
+                   <!--in base allo status prenotazione 
                         <div *ngIf="prenot.status_prenotazione === 0">
                         <td><button type="button" class="btn btn-success" (click)="approvaPrenotazione(prenot.id)">Approva</button></td>
                         <td><button type="button" (click)=eliminaPrenotazione(prenot.id) class="btn btn-danger">Elimina</button></td>
                         </div>
                     
-                        <!--idem-->
+                        
                         <td *ngIf="prenot.status_prenotazione === 1">
                             <p class="text-success">Prenotazione confermata.</p> 
                         </td>
@@ -53,6 +58,8 @@
                 </tr>
             </tbody>
         </table>
+
+    -->
 
     </div>
 

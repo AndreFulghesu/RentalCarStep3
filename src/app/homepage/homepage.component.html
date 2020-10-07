@@ -7,10 +7,13 @@
             <p class="text-success mx-auto">{{eliminato}}</p>
         </div>
 
+        
+        
+        <app-generic-button [buttonConfig]="addUserButton" *ngIf="utente.privilegi === 1" (click)=addUser()></app-generic-button>
+        <app-generic-button [buttonConfig]="addPrenotationButton" *ngIf="utente.privilegi === 0" (click)=addPrenotazione()></app-generic-button>
 
-        <a  class="btn btn-primary" *ngIf="utente.privilegi === 1" (click)=addUser()> Aggiungi utente...</a>
-        <a  class="btn btn-primary" *ngIf="utente.privilegi === 0" (click)=addPrenotazione()> Aggiungi prenotazione...</a>
 
+        <!--
         <table class="table table-hover" style="margin-top: 1%;" *ngIf="utente.privilegi === 1">
             <thead class="thead-dark">
             <tr>
@@ -36,6 +39,26 @@
             </tbody>
         </table>
 
+    -->
+
+    <div class="row border border-dark border-left-0 border-right-0 border-bottom-0 row-cols-1 text-center" style="margin-left: 0.2%; margin-top: 1%; padding: 1%;">
+      
+        <div class="col">
+            <select style="margin-top:2%;" [(ngModel)]="selezione" name="selezione" class="form-control">
+                <option selected>Scegli...</option>
+                <option value="tutti">Tutti</option>
+                <option value="nome">Nome</option>
+                <option value="cognome">Cognome</option>
+            </select>
+        </div>
+        <div class="col">
+        <input class="form-control" type="text" style="margin-top: 2%;" name="nome" [(ngModel)]="nome" (ngModelChange)="search()"
+        placeholder="Cerca un utente...">
+        </div>
+    </div>
+    
+        <app-generic-table [tableConfig]="myTable" [data] = "users" [currentPage]="homepage" *ngIf="utente.privilegi === 1"></app-generic-table>
+
 
         
         
@@ -49,8 +72,8 @@
                 <li class="list-group-item">Prenotazione:<strong> {{utente.nome}}  {{utente.cognome}}</strong></li>
                 <li class="list-group-item">Data:  <strong>{{prenot.inizio_prenotazione}} al {{prenot.fine_prenotazione}}</strong></li>
                 <li class="list-group-item">Auto: <strong>{{prenot.mezzo_utilizzato}} </strong></li>
-                <li class="list-group-item"><button type="button" class="btn btn-info"  (click)=modificaPrenotazione(prenot.id) >Modifica prenotazione</button></li>
-                <li class="list-group-item"><button type="button" class="btn btn-danger" (click)=deletePrenotazione(prenot.id)>Elimina prenotazione </button> </li>
+                <li class="list-group-item" *ngIf="prenot.status_prenotazione === 0"><button type="button" class="btn btn-info"  (click)=modificaPrenotazione(prenot.id) >Modifica prenotazione</button></li>
+                <li class="list-group-item" *ngIf="prenot.status_prenotazione === 0"><button type="button" class="btn btn-danger" (click)=deletePrenotazione(prenot.id)>Elimina prenotazione </button> </li>
                 <!--status prenotazione -->
                 <div *ngIf="prenot.status_prenotazione === 0">
                     <p class="text-warning">Prenotazione non confermata</p>

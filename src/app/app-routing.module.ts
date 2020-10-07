@@ -21,11 +21,12 @@ const routes: Routes = [
   {path:'editVeicle/:id', component:ModifyVeicleComponent},
   {path:'visualizzaPrenotazioni/:id',component:PrenotazioniUtenteComponent},
   {path:'modificaPrenotazione/:id',component:ModificaPrenotazioneComponent},
-  {path:'prenotaAuto/:targa', component:PrenotaAutoComponent}
+  {path:'prenotaAuto/:targa', component:PrenotaAutoComponent},
+  {path: '',   redirectTo: 'login', pathMatch: 'full'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

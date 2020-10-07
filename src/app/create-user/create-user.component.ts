@@ -33,7 +33,6 @@ export class CreateUserComponent implements OnInit {
       this.service.createUser(formInput).subscribe((response) =>{
       })
       
-      
       this.router.navigate(['homepage',this.loggato.id]);
   }
 
