@@ -31,7 +31,13 @@ export class PrenotazioniService {
 
   nuovaPrenotazione (prenotazione)
   {
+    
     return this.http.post(" http://localhost:3000/prenotazioni",prenotazione);
+  }
+
+  prenotazioneByMezzo (targa)
+  {
+    return this.http.get<Prenotazione[]>(`http://localhost:3000/prenotazioni?mezzo_utilizzato=${targa}`)
   }
 
 

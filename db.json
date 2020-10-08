@@ -50,6 +50,14 @@
       "password": "1234",
       "data_nascita": "1999-02-01",
       "id": 6
+    },
+    {
+      "nome": "Gilvio ",
+      "cognome": "Gilbertino",
+      "email": "gilvietto@gmail.com",
+      "password": "1234",
+      "data_nascita": "1999-12-12",
+      "id": 7
     }
   ],
   "cars": [
@@ -102,21 +110,21 @@
       "inizio_prenotazione": "2020-11-15",
       "fine_prenotazione": "2020-11-18",
       "mezzo_utilizzato": "DE668MX",
-      "status_prenotazione": 0,
+      "status_prenotazione": 1,
       "utente_richiedente": 3
     },
     {
       "id": 4,
-      "inizio_prenotazione": "2020-11-15",
-      "fine_prenotazione": "2020-11-18",
+      "inizio_prenotazione": "2020-11-10",
+      "fine_prenotazione": "2020-11-12",
       "mezzo_utilizzato": "BH470RT",
       "status_prenotazione": 0,
       "utente_richiedente": 3
     },
     {
       "id": 5,
-      "inizio_prenotazione": "2020-11-15",
-      "fine_prenotazione": "2020-11-18",
+      "inizio_prenotazione": "2020-11-11",
+      "fine_prenotazione": "2020-11-12",
       "mezzo_utilizzato": "BH470RT",
       "status_prenotazione": 0,
       "utente_richiedente": 3

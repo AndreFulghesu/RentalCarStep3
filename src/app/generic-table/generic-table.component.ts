@@ -24,6 +24,7 @@ export class GenericTableComponent implements OnInit {
   utente:User;
   da_approvare:Prenotazione;
   eliminata:string = ""
+  reload = false;
 
   visualButton: MyButtonConfig = new MyButtonConfig;
   modifyButton: MyButtonConfig = new MyButtonConfig;
@@ -43,6 +44,8 @@ export class GenericTableComponent implements OnInit {
   constructor(private router:Router, private service:UserService, private prenotService:PrenotazioniService) { }
 
   ngOnInit(): void {
+
+    console.log(this.reload)
     this.utente = JSON.parse(sessionStorage.user)
     this.visualButton.text ="Visualizza prenotazione"
     this.visualButton.customCssClass="btn btn-primary"
@@ -55,6 +58,13 @@ export class GenericTableComponent implements OnInit {
 
     this.approveButton.text = "Conferma"
     this.approveButton.customCssClass = "btn btn-success"
+
+    if (this.reload === true){
+      window.location.reload()
+      this.reload = false;
+    }
+
+    
     }
 
 
@@ -101,6 +111,9 @@ export class GenericTableComponent implements OnInit {
   {
     this.prenotService.deletePrenotazione(id).subscribe(()=>{
       this.getPrenotazioniByIdUtente(this.utente.id);
+      this.eliminata = "Prenotazione eliminata";
+      this.reload = true;
+      this.ngOnInit()
       
     })
   }
@@ -138,9 +151,8 @@ export class GenericTableComponent implements OnInit {
       console.log("status "+this.da_approvare.status_prenotazione)
 
       this.prenotService.updatePrenotazione(this.da_approvare).subscribe(data=>{
-
-        this.ngOnInit()
-
+        this.reload = true;
+          this.ngOnInit() //ricaricare la page dopo l'aggiornamento
       })
       
     })
@@ -153,7 +165,9 @@ export class GenericTableComponent implements OnInit {
       
       this.getAllPrenotazioni(this.id_utente);
       this.eliminata = "Prenotazione eliminata";
-      window.location.reload()
+      this.reload = true;
+      this.ngOnInit()
+      
       
       
     });

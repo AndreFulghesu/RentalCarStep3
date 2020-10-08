@@ -1,8 +1,12 @@
 <app-menu></app-menu>
 <div class="login-container d-flex align-items-center justify-content-center" style="margin-top: 5%;">
 
-
+    
+    
     <form #myForm="ngForm" class="shadow-sm p-3 mb-5 bg-white rounded-lg" >
+        <p class="text text-danger" *ngIf="errorePrenotazione.length >0">
+            {{errorePrenotazione}}
+        </p>
         <div class="form-group">
             <label for="data_inizio">Seleziona la data di inizio:</label>
             <input type="date" id="data_inizio" name="data_inizio" [(ngModel)]="inizio_prenotazione"
