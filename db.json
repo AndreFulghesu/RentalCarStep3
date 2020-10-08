@@ -123,9 +123,9 @@
     },
     {
       "id": 5,
-      "inizio_prenotazione": "2020-11-11",
-      "fine_prenotazione": "2020-11-12",
-      "mezzo_utilizzato": "BH470RT",
+      "inizio_prenotazione": "2020-10-09",
+      "fine_prenotazione": "2020-10-11",
+      "mezzo_utilizzato": "CX435EE",
       "status_prenotazione": 0,
       "utente_richiedente": 3
     }

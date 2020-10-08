@@ -19,6 +19,8 @@ export class HomepageComponent implements OnInit {
 
   
 
+  pagina = 1;
+  righe = 2;
 
   myTable: MyTableConfig = new MyTableConfig;
 
@@ -27,6 +29,8 @@ export class HomepageComponent implements OnInit {
   addPrenotationButton: MyButtonConfig = new MyButtonConfig;
 
   homepage = "homepage"
+
+  eliminata = ""
 
   myHeader: MyHeaders [] = [{"label":"ID","key":"id"},{"label":"Utente","key":"nome"},{"label":"Cognome","key":"cognome"}];
  
@@ -71,18 +75,6 @@ export class HomepageComponent implements OnInit {
   search()
   {
 
-    /*
-    if (this.nome == "")
-    {
-      this.ngOnInit();
-    }else{
-      this.users = this.users.filter(res =>{
-        return res.nome.toLocaleLowerCase().match(this.nome.toLocaleLowerCase());
-      })
-    }
-
-    */
-
    if (this.nome === "")
    {
      this.ngOnInit();
@@ -97,6 +89,12 @@ export class HomepageComponent implements OnInit {
         this.users = this.users.filter(res =>{
           return res.cognome.toLocaleLowerCase().match(this.nome.toLocaleLowerCase());
         })
+      }else{
+        if (this.selezione === "targa"){
+          this.prenotazioni = this.prenotazioni.filter(res =>{
+            return res.mezzo_utilizzato.toLocaleLowerCase().match(this.nome.toLocaleLowerCase())
+          })
+        }
       }
     }
   }
@@ -149,6 +147,16 @@ export class HomepageComponent implements OnInit {
       this.prenotazioni = data;
     })
 
+  }
+
+  deletePrenotazione(id)
+  {
+    this.prenotService.deletePrenotazione(id).subscribe(()=>{
+      this.getPrenotazioniByIdUtente(this.utente.id);
+      this.eliminata = "Prenotazione eliminata";
+      this.ngOnInit()
+      
+    })
   }
 
 

@@ -5,43 +5,13 @@
 
         <div *ngIf="eliminato.length !== 0">
             <p class="text-success mx-auto">{{eliminato}}</p>
-        </div>
-
-        
+        </div>    
         
         <app-generic-button [buttonConfig]="addUserButton" *ngIf="utente.privilegi === 1" (click)=addUser()></app-generic-button>
         <app-generic-button [buttonConfig]="addPrenotationButton" *ngIf="utente.privilegi === 0" (click)=addPrenotazione()></app-generic-button>
 
 
-        <!--
-        <table class="table table-hover" style="margin-top: 1%;" *ngIf="utente.privilegi === 1">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Utente</th>
-                <th scope="col">Prenotazione</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-
-
-                <tr *ngFor="let user of users">
-                    <th scope="row"></th>
-                    <td><strong>{{user.nome }} {{ user.cognome}} </strong> </td>
-                    <td> <button type="button" class="btn btn-info" (click)="prenotazioniUtente(user.id)">Visualizza Prenotazione</button></td>
-                    <td><button type="button" class="btn btn-warning" (click)="editUser(user)">Modifica</button></td>
-                    <td><button class="btn btn-danger" (click)="deleteUser(user)">Elimina</button></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-
-    -->
-
-    <div class="row border border-dark border-left-0 border-right-0 border-bottom-0 row-cols-1 text-center" style="margin-left: 0.2%; margin-top: 1%; padding: 1%;">
+    <div *ngIf="utente.privilegi === 1" class="row border border-dark border-left-0 border-right-0 border-bottom-0 row-cols-1 text-center" style="margin-left: 0.2%; margin-top: 1%; padding: 1%;">
       
         <div class="col">
             <select style="margin-top:2%;" [(ngModel)]="selezione" name="selezione" class="form-control">
@@ -56,6 +26,21 @@
         placeholder="Cerca un utente...">
         </div>
     </div>
+
+    <div *ngIf="utente.privilegi === 0" class="row border border-dark border-left-0 border-right-0 border-bottom-0 row-cols-1 text-center" style="margin-left: 0.2%; margin-top: 1%; padding: 1%;">
+      
+        <div class="col">
+            <select style="margin-top:2%;" [(ngModel)]="selezione" name="selezione" class="form-control">
+                <option selected>Scegli...</option>
+                <option value="tutti">Tutti</option>
+                <option value="targa">Targa Auto</option>
+            </select>
+        </div>
+        <div class="col">
+        <input class="form-control" type="text" style="margin-top: 2%;" name="nome" [(ngModel)]="nome" (ngModelChange)="search()"
+        placeholder="Cerca una prenotazione...">
+        </div>
+    </div>
     
         <app-generic-table [tableConfig]="myTable" [data] = "users" [currentPage]="homepage" *ngIf="utente.privilegi === 1"></app-generic-table>
 
@@ -68,7 +53,7 @@
                     Non ci sono ancora prenotazioni.
                 </p>
             </div>
-            <ul class="list-group list-group-flush" *ngFor="let prenot of prenotazioni">
+            <ul class="list-group list-group-flush" *ngFor="let prenot of prenotazioni | paginate: {itemsPerPage: righe, currentPage:pagina}">
                 <li class="list-group-item">Prenotazione:<strong> {{utente.nome}}  {{utente.cognome}}</strong></li>
                 <li class="list-group-item">Data:  <strong>{{prenot.inizio_prenotazione}} al {{prenot.fine_prenotazione}}</strong></li>
                 <li class="list-group-item">Auto: <strong>{{prenot.mezzo_utilizzato}} </strong></li>
@@ -83,16 +68,8 @@
                 </div>
             </ul>
         </div>
+        <pagination-controls (pageChange)="pagina = $event"></pagination-controls>
 
 </div>
 </div>
 
-<script>
-    function deleteUser(idUtente){
-        var confirmation = confirm("Sei sicuro di voler cancellare l'utente?")
-        if (confirmation){
-            window.location.href='elimina?idUtente='+idUtente;
-        }else{
-        }
-    }
-</script>
