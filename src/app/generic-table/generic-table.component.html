@@ -1,27 +1,30 @@
 
 
 
-
-
-
 <p class="text text-warning" *ngIf="eliminata.length >0">{{eliminata}}</p>
-<table class="table table-hover table-borderless" style="margin-top: 1%; width: 85%;">
+<table class="table table-hover table-borderless" style="margin-top: 1%; width: 90%;">
     <thead class="thead-dark">
     <th  *ngFor="let column of tableConfig.header" (click)="sort(column.key)">{{column.label}} <span>▼</span></th>
     </thead>
     <tbody>
 
         <tr *ngFor="let object of data | orderBy: key: reverse | paginate: {itemsPerPage: righe, currentPage:pagina}">
-            <td scope="col" class="border-top border-dark" *ngFor="let column of tableConfig.header"><strong>{{object[column.key]}} </strong> </td>
-            <td> <app-generic-button [buttonConfig]="visualButton" *ngIf="currentPage === 'homepage'" (click)="prenotazioniUtente(object.id)"></app-generic-button></td>
-            <td><app-generic-button [buttonConfig]="modifyButton" *ngIf="currentPage === 'homepage'"  (click)="editUser(object)"></app-generic-button></td>
-            <td><app-generic-button [buttonConfig]="deleteButton" *ngIf="currentPage === 'homepage'" (click)="deleteUser(object)"></app-generic-button></td>
+            <td scope="col" class="border-top border-dark" *ngFor="let column of tableConfig.header"><strong>{{object[column.key]}} </strong>
+            
+                <app-generic-button [buttonConfig]="buttonModify" *ngIf="column.key == 'modifica'" (onClick)="editUser(object)">{{buttonModify.text}}</app-generic-button>
+                
+                
+                    <app-generic-button [buttonConfig]="buttonDelete" *ngIf="column.key == 'elimina'" (onClick)="deleteUser(object)">{{buttonDelete.text}}</app-generic-button>
+                
+                
+                    <app-generic-button [buttonConfig]="buttonView" *ngIf="column.key == 'visualizza'" (onClick)="prenotazioniUtente(object.id)">{{buttonView.text}}</app-generic-button>
 
-            <td scope ="col" *ngIf="currentPage === 'prenotazioniUtente' && object.status_prenotazione === 1">
-                <p class="text-success">Prenotazione confermata.</p> 
+                    
+                    <app-generic-button [buttonConfig]="buttonApprove" *ngIf="column.key == 'approva' && object.status_prenotazione === 0" (onClick)="prenotazioniUtente(object.id)">{{buttonView.text}}</app-generic-button>
+                    
+                    
             </td>
-            <td><app-generic-button [buttonConfig]="approveButton" *ngIf="currentPage === 'prenotazioniUtente' && object.status_prenotazione === 0" (click)="approvaPrenotazione(object.id)"></app-generic-button></td>
-            <td><app-generic-button [buttonConfig]="deleteButton" *ngIf="currentPage === 'prenotazioniUtente' && object.status_prenotazione === 0" (click)="eliminaPrenotazione(object.id)"></app-generic-button></td>
+            
             
         </tr>
 

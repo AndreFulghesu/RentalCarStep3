@@ -26,12 +26,10 @@ export class GenericTableComponent implements OnInit {
   eliminata:string = ""
   reload = false;
 
-  visualButton: MyButtonConfig = new MyButtonConfig;
-  modifyButton: MyButtonConfig = new MyButtonConfig;
-  deleteButton: MyButtonConfig = new MyButtonConfig;
-  approveButton: MyButtonConfig = new MyButtonConfig;
-
-  
+  buttonDelete:MyButtonConfig = new MyButtonConfig ("btn btn-danger","Elimina");
+  buttonModify:MyButtonConfig = new MyButtonConfig ("btn btn-warning","Modifica");
+  buttonView:MyButtonConfig = new MyButtonConfig ("btn btn-primary","Visualizza");
+  buttonApprove:MyButtonConfig = new MyButtonConfig ("btn btn-success","Approva");
 
   @Input() tableConfig : MyTableConfig ;
   @Input() data : any [];
@@ -47,24 +45,12 @@ export class GenericTableComponent implements OnInit {
 
     console.log(this.reload)
     this.utente = JSON.parse(sessionStorage.user)
-    this.visualButton.text ="Visualizza prenotazione"
-    this.visualButton.customCssClass="btn btn-primary"
-
-    this.modifyButton.customCssClass="btn btn-warning"
-    this.modifyButton.text= "Modifica"
-
-    this.deleteButton.text = "Elimina"
-    this.deleteButton.customCssClass = "btn btn-danger"
-
-    this.approveButton.text = "Conferma"
-    this.approveButton.customCssClass = "btn btn-success"
-
+    
     if (this.reload === true){
       window.location.reload()
       this.reload = false;
     }
 
-    
     }
 
 
@@ -186,6 +172,10 @@ export class GenericTableComponent implements OnInit {
 export class MyTableConfig {
 
   header: MyHeaders [];
+
+  constructor (headers){
+    this.header = headers;
+  }
 }
 
 export class MyHeaders {

@@ -1,17 +1,18 @@
 <app-menu></app-menu>
 <div class="container-fluid d-flex align-items-center justify-content-center">
 
-    <div class="row row-cols-1 text-center"  style="width: 70%; padding: 10px; margin-top: 3%;">
+    <div class="row row-cols-1 text-center"  style="width: 80%; padding: 10px; margin-top: 3%;">
 
         <div *ngIf="eliminato.length !== 0">
             <p class="text-success mx-auto">{{eliminato}}</p>
-        </div>    
+        </div> 
         
         <app-generic-button [buttonConfig]="addUserButton" *ngIf="utente.privilegi === 1" (click)=addUser()></app-generic-button>
         <app-generic-button [buttonConfig]="addPrenotationButton" *ngIf="utente.privilegi === 0" (click)=addPrenotazione()></app-generic-button>
+        
 
 
-    <div *ngIf="utente.privilegi === 1" class="row border border-dark border-left-0 border-right-0 border-bottom-0 row-cols-1 text-center" style="margin-left: 0.2%; margin-top: 1%; padding: 1%;">
+    <div *ngIf="utente.privilegi === 1" class="row  border border-dark border-left-0 border-right-0 border-bottom-0 row-cols-1 text-center" style="margin-left: 0.2%; margin-top: 1%; padding: 1%;">
       
         <div class="col">
             <select style="margin-top:2%;" [(ngModel)]="selezione" name="selezione" class="form-control">
@@ -45,8 +46,6 @@
         <app-generic-table [tableConfig]="myTable" [data] = "users" [currentPage]="homepage" *ngIf="utente.privilegi === 1"></app-generic-table>
 
 
-        
-        
         <div class="col border border-info shadow-sm p-3 mb-5 bg-white" style="margin-top: 1%; width: 40%" *ngIf="utente.privilegi === 0">
             <div *ngIf="prenotazioni.length === 0">
                 <p class="text-danger mx-auto">

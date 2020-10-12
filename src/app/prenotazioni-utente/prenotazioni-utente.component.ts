@@ -26,26 +26,28 @@ export class PrenotazioniUtenteComponent implements OnInit {
 
   prenotazioni_utente = "prenotazioniUtente"
 
-  myTable: MyTableConfig = new MyTableConfig;
+  
 
-  myHeaders: MyHeaders[] = [{"label":"#","key":""},{"label":"Mezzo","key":"mezzo_utilizzato"},{"label":"Data inizio","key":"inizio_prenotazione"},{"label":"Data fine","key":"fine_prenotazione"}];
+  myHeaders: MyHeaders[] = [{"label":"#","key":""},{"label":"Mezzo","key":"mezzo_utilizzato"},{"label":"Data inizio","key":"inizio_prenotazione"},{"label":"Data fine","key":"fine_prenotazione"},{"label":"Approva","key":"approva"},{"label":"Elimina","key":"elimina"}];
+
+  myTable: MyTableConfig = new MyTableConfig(this.myHeaders)
   
 
   constructor(private route:ActivatedRoute,private prenotService:PrenotazioniService,private userService:UserService,private mezzoService:MezzoServiceService) { }
 
   ngOnInit(): void {
 
-    this.myTable.header = this.myHeaders;
-
     this.id_utente = this.route.snapshot.params['id'];
     this.getAllPrenotazioni(this.id_utente);
     this.getUtenteSelezionato(this.id_utente);
+
   }
 
   getAllPrenotazioni (id)
   {
     this.prenotService.getPrenotazionebyIdUtente(id).subscribe(data =>{
       this.prenotazioni = data;
+      console.log(this.getAllPrenotazioni(this.id_utente))
     })
   }
 

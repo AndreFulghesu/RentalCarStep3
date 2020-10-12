@@ -22,17 +22,17 @@ export class HomepageComponent implements OnInit {
   pagina = 1;
   righe = 2;
 
-  myTable: MyTableConfig = new MyTableConfig;
-
-  addUserButton: MyButtonConfig = new MyButtonConfig;
-
-  addPrenotationButton: MyButtonConfig = new MyButtonConfig;
 
   homepage = "homepage"
 
   eliminata = ""
 
-  myHeader: MyHeaders [] = [{"label":"ID","key":"id"},{"label":"Utente","key":"nome"},{"label":"Cognome","key":"cognome"}];
+  myHeader: MyHeaders [] = [{"label":"ID","key":"id"},{"label":"Nome","key":"nome"},{"label":"Cognome","key":"cognome"},{"label":"Prenotazione","key":"visualizza"},{"label":"Modifica Utente","key":"modifica"},{"label":"Elimina Utente","key":"elimina"}];
+
+  myTable: MyTableConfig = new MyTableConfig(this.myHeader);
+
+  addUserButton = new MyButtonConfig("btn btn-primary","Aggiungi utente");
+  addPrenotationButton = new MyButtonConfig("btn btn-primary","Aggiungi prenotazione")
  
   
   utente:User;
@@ -49,12 +49,8 @@ export class HomepageComponent implements OnInit {
 
 
   constructor(private route:ActivatedRoute, private service:UserService, private router:Router, private servicePrenot:PrenotazioniService, private prenotService:PrenotazioniService) {
-    this.myTable.header = this.myHeader;
-    this.addUserButton.text = "Aggiungi Utente"
-    this.addUserButton.customCssClass = "btn btn-primary"
-
-    this.addPrenotationButton.customCssClass = "btn btn-primary"
-    this.addPrenotationButton.text = "Aggiungi prenotazione"
+    
+    
    }
 
   ngOnInit(): void {

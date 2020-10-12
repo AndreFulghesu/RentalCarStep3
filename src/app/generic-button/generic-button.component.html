@@ -1,3 +1,2 @@
 
-
-<a style="width:auto;" [className]="buttonConfig.customCssClass" >{{buttonConfig.text}}</a>
+<button type="button" style="width:auto;" [className]="buttonConfig.customCssClass" (click)="onClickButton($event)">{{buttonConfig.text}}</button>

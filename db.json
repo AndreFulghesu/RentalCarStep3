@@ -58,6 +58,14 @@
       "password": "1234",
       "data_nascita": "1999-12-12",
       "id": 7
+    },
+    {
+      "nome": "Antonio",
+      "cognome": "Zedda",
+      "email": "zedda@gmail.com",
+      "password": "cristoforever",
+      "data_nascita": "1997-09-17",
+      "id": 8
     }
   ],
   "cars": [

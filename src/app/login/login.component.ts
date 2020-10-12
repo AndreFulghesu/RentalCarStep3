@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../model/user';
+import { MyButtonConfig } from '../generic-button/generic-button.component';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   errorMessage = 'Spiacente, credenziali errate';
   users:User[] = [];
   authenticate:boolean;
+  button:MyButtonConfig = new MyButtonConfig("btn btn-primary", "Accedi");
 
 
   email = ''
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
     }) 
   }
 
-  gestLogin()
+  gestLogin(event)
   {
 
       for (var v of this.users){

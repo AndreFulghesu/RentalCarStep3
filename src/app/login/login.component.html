@@ -34,7 +34,7 @@
       <label for="password">Password</label>
       <input type="password" name="password" class="form-control" id="password" [(ngModel)]="password" />
     </div>
-    <button type="button" class="btn btn-primary" style="margin-left: 35%; width: 33%;" (click)=gestLogin()>Accedi</button>
+    <app-generic-button [buttonConfig]="button" (onClick)="gestLogin($event)">{{button.text}}</app-generic-button>
   </form>
 
   <div *ngIf="authenticate === false"  style="margin-top:3%; height: 5%;" role="alert">
