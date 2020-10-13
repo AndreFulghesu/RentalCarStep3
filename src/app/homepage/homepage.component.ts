@@ -33,6 +33,9 @@ export class HomepageComponent implements OnInit {
 
   addUserButton = new MyButtonConfig("btn btn-primary","Aggiungi utente");
   addPrenotationButton = new MyButtonConfig("btn btn-primary","Aggiungi prenotazione")
+
+  modificaPrenotazioneUser =  new MyButtonConfig("btn btn-info","Modifica Prenotazione")
+  eliminaPrenotazioneUser = new MyButtonConfig("btn btn-danger","Elimina Prenotazione")
  
   
   utente:User;

@@ -42,8 +42,18 @@
         placeholder="Cerca una prenotazione...">
         </div>
     </div>
+
+
+
+
     
         <app-generic-table [tableConfig]="myTable" [data] = "users" [currentPage]="homepage" *ngIf="utente.privilegi === 1"></app-generic-table>
+
+
+
+
+
+
 
 
         <div class="col border border-info shadow-sm p-3 mb-5 bg-white" style="margin-top: 1%; width: 40%" *ngIf="utente.privilegi === 0">
@@ -56,8 +66,8 @@
                 <li class="list-group-item">Prenotazione:<strong> {{utente.nome}}  {{utente.cognome}}</strong></li>
                 <li class="list-group-item">Data:  <strong>{{prenot.inizio_prenotazione}} al {{prenot.fine_prenotazione}}</strong></li>
                 <li class="list-group-item">Auto: <strong>{{prenot.mezzo_utilizzato}} </strong></li>
-                <li class="list-group-item" *ngIf="prenot.status_prenotazione === 0"><button type="button" class="btn btn-info"  (click)=modificaPrenotazione(prenot.id) >Modifica prenotazione</button></li>
-                <li class="list-group-item" *ngIf="prenot.status_prenotazione === 0"><button type="button" class="btn btn-danger" (click)=deletePrenotazione(prenot.id)>Elimina prenotazione </button> </li>
+                <li class="list-group-item" *ngIf="prenot.status_prenotazione === 0"><app-generic-button [buttonConfig]="modificaPrenotazioneUser" type="button"  (click)=modificaPrenotazione(prenot.id)></app-generic-button></li>
+                <li class="list-group-item" *ngIf="prenot.status_prenotazione === 0"><app-generic-button [buttonConfig]="eliminaPrenotazioneUser" type="button"  (click)=deletePrenotazione(prenot.id)></app-generic-button></li>
                 <!--status prenotazione -->
                 <div *ngIf="prenot.status_prenotazione === 0">
                     <p class="text-warning">Prenotazione non confermata</p>
